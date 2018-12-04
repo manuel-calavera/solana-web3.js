@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../">
+  <title data-ice="title">src/transaction.js | Solana Javascript API</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<link rel="stylesheet" href="./inject/css/0-theme.css"><meta name="description" content="Solana Javascript API"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="Solana Javascript API"><meta property="twitter:description" content="Solana Javascript API"></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/solana-labs/solana-web3.js"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/account.js~Account.html">Account</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/bpf-loader.js~BpfLoader.html">BpfLoader</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/budget-program.js~BudgetProgram.html">BudgetProgram</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/connection.js~Connection.html">Connection</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/loader.js~Loader.html">Loader</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/native-loader.js~NativeLoader.html">NativeLoader</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/publickey.js~PublicKey.html">PublicKey</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/system-program.js~SystemProgram.html">SystemProgram</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/token-program.js~Token.html">Token</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/token-program.js~TokenAmount.html">TokenAmount</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/transaction.js~Transaction.html">Transaction</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/transaction.js~TransactionInstruction.html">TransactionInstruction</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-publicKey">publicKey</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-rustString">rustString</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-uint64">uint64</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-SYSTEM_TOKEN_PROGRAM_ID">SYSTEM_TOKEN_PROGRAM_ID</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-PACKET_DATA_SIZE">PACKET_DATA_SIZE</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-BudgetCondition">BudgetCondition</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-Payment">Payment</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-SignatureCondition">SignatureCondition</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-TimestampCondition">TimestampCondition</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-AccountInfo">AccountInfo</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-SignatureStatus">SignatureStatus</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-TransactionCtorFields">TransactionCtorFields</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-TransactionId">TransactionId</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-TransactionInstructionCtorFields">TransactionInstructionCtorFields</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-TransactionSignature">TransactionSignature</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#util">util</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-sendAndConfirmRawTransaction">sendAndConfirmRawTransaction</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-sendAndConfirmTransaction">sendAndConfirmTransaction</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-sleep">sleep</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">src/transaction.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">// @flow
+
+import invariant from &apos;assert&apos;;
+import * as BufferLayout from &apos;buffer-layout&apos;;
+import nacl from &apos;tweetnacl&apos;;
+import bs58 from &apos;bs58&apos;;
+
+import * as Layout from &apos;./layout&apos;;
+import {PublicKey} from &apos;./publickey&apos;;
+import {Account} from &apos;./account&apos;;
+
+/**
+ * @typedef {string} TransactionSignature
+ */
+export type TransactionSignature = string;
+
+/**
+ * @typedef {string} TransactionId
+ */
+export type TransactionId = string;
+
+/**
+ * Maximum over-the-wire size of a Transaction
+ */
+export const PACKET_DATA_SIZE = 512;
+
+/**
+ * List of TransactionInstruction object fields that may be initialized at construction
+ *
+ * @typedef {Object} TransactionInstructionCtorFields
+ * @property {?Array&lt;PublicKey&gt;} keys
+ * @property {?PublicKey} programId
+ * @property {?Buffer} userdata
+ */
+type TransactionInstructionCtorFields = {|
+  keys?: Array&lt;PublicKey&gt;,
+  programId?: PublicKey,
+  userdata?: Buffer,
+|};
+
+/**
+ * Transaction Instruction class
+ */
+export class TransactionInstruction {
+  /**
+   * Public keys to include in this transaction
+   */
+  keys: Array&lt;PublicKey&gt; = [];
+
+  /**
+   * Program Id to execute
+   */
+  programId: PublicKey;
+
+  /**
+   * Program input
+   */
+  userdata: Buffer = Buffer.alloc(0);
+
+  constructor(opts?: TransactionInstructionCtorFields) {
+    opts &amp;&amp; Object.assign(this, opts);
+  }
+}
+
+/**
+ * @private
+ */
+type SignaturePubkeyPair = {|
+  signature: Buffer | null,
+  publicKey: PublicKey,
+|};
+
+/**
+ * List of Transaction object fields that may be initialized at construction
+ *
+ * @typedef {Object} TransactionCtorFields
+ * @property {?number} fee
+ * @property (?lastId} A recent transaction id
+ * @property (?signatures} One or more signatures
+ *
+ */
+type TransactionCtorFields = {|
+  fee?: number,
+  lastId?: TransactionId,
+  signatures?: Array&lt;SignaturePubkeyPair&gt;,
+|};
+
+/**
+ * Transaction class
+ */
+export class Transaction {
+  /**
+   * Signatures for the transaction.  Typically created by invoking the
+   * `sign()` method
+   */
+  signatures: Array&lt;SignaturePubkeyPair&gt; = [];
+
+  /**
+   * The first (primary) Transaction signature
+   */
+  get signature(): Buffer | null {
+    if (this.signatures.length &gt; 0) {
+      return this.signatures[0].signature;
+    }
+    return null;
+  }
+
+  /**
+   * The instructions to atomically execute
+   */
+  instructions: Array&lt;TransactionInstruction&gt; = [];
+
+  /**
+   * A recent transaction id.  Must be populated by the caller
+   */
+  lastId: ?TransactionId;
+
+  /**
+   * Fee for this transaction
+   */
+  fee: number = 1;
+
+  /**
+   * Construct an empty Transaction
+   */
+  constructor(opts?: TransactionCtorFields) {
+    opts &amp;&amp; Object.assign(this, opts);
+  }
+
+  /**
+   * Add one or more instructions to this Transaction
+   */
+  add(
+    ...items: Array&lt;Transaction | TransactionInstructionCtorFields&gt;
+  ): Transaction {
+    if (items.length === 0) {
+      throw new Error(&apos;No instructions&apos;);
+    }
+
+    items.forEach(item =&gt; {
+      if (item instanceof Transaction) {
+        this.instructions = this.instructions.concat(item.instructions);
+      } else {
+        this.instructions.push(new TransactionInstruction(item));
+      }
+    });
+    return this;
+  }
+
+  /**
+   * @private
+   */
+  _getSignData(): Buffer {
+    const {lastId} = this;
+    if (!lastId) {
+      throw new Error(&apos;Transaction lastId required&apos;);
+    }
+
+    if (this.instructions.length &lt; 1) {
+      throw new Error(&apos;No instructions provided&apos;);
+    }
+
+    const keys = this.signatures.map(({publicKey}) =&gt; publicKey.toString());
+    const programIds = [];
+    this.instructions.forEach(instruction =&gt; {
+      const programId = instruction.programId.toString();
+      if (!programIds.includes(programId)) {
+        programIds.push(programId);
+      }
+
+      instruction.keys.map(key =&gt; key.toString()).forEach(key =&gt; {
+        if (!keys.includes(key)) {
+          keys.push(key);
+        }
+      });
+    });
+
+    const instructions = this.instructions.map(instruction =&gt; {
+      const {userdata, programId} = instruction;
+      return {
+        programIdIndex: programIds.indexOf(programId.toString()),
+        keyIndices: instruction.keys.map(key =&gt; keys.indexOf(key.toString())),
+        userdata,
+      };
+    });
+
+    instructions.forEach(instruction =&gt; {
+      invariant(instruction.programIdIndex &gt;= 0);
+      instruction.keyIndices.forEach(keyIndex =&gt; invariant(keyIndex &gt;= 0));
+    });
+
+    const instructionLayout = BufferLayout.struct([
+      BufferLayout.u8(&apos;programIdIndex&apos;),
+
+      BufferLayout.u32(&apos;keyIndicesLength&apos;),
+      BufferLayout.u32(&apos;keyIndicesLengthPadding&apos;),
+      BufferLayout.seq(
+        BufferLayout.u8(&apos;keyIndex&apos;),
+        BufferLayout.offset(BufferLayout.u32(), -8),
+        &apos;keyIndices&apos;,
+      ),
+      BufferLayout.u32(&apos;userdataLength&apos;),
+      BufferLayout.u32(&apos;userdataLengthPadding&apos;),
+      BufferLayout.seq(
+        BufferLayout.u8(&apos;userdatum&apos;),
+        BufferLayout.offset(BufferLayout.u32(), -8),
+        &apos;userdata&apos;,
+      ),
+    ]);
+
+    const signDataLayout = BufferLayout.struct([
+      BufferLayout.u32(&apos;keysLength&apos;),
+      BufferLayout.u32(&apos;keysLengthPadding&apos;),
+      BufferLayout.seq(
+        Layout.publicKey(&apos;key&apos;),
+        BufferLayout.offset(BufferLayout.u32(), -8),
+        &apos;keys&apos;,
+      ),
+      Layout.publicKey(&apos;lastId&apos;),
+      BufferLayout.ns64(&apos;fee&apos;),
+
+      BufferLayout.u32(&apos;programIdsLength&apos;),
+      BufferLayout.u32(&apos;programIdsLengthPadding&apos;),
+      BufferLayout.seq(
+        Layout.publicKey(&apos;programId&apos;),
+        BufferLayout.offset(BufferLayout.u32(), -8),
+        &apos;programIds&apos;,
+      ),
+
+      BufferLayout.u32(&apos;instructionsLength&apos;),
+      BufferLayout.u32(&apos;instructionsLengthPadding&apos;),
+      BufferLayout.seq(
+        instructionLayout,
+        BufferLayout.offset(BufferLayout.u32(), -8),
+        &apos;instructions&apos;,
+      ),
+    ]);
+
+    const transaction = {
+      keys: keys.map(key =&gt; new PublicKey(key).toBuffer()),
+      lastId: Buffer.from(bs58.decode(lastId)),
+      fee: this.fee,
+      programIds: programIds.map(programId =&gt;
+        new PublicKey(programId).toBuffer(),
+      ),
+      instructions,
+    };
+
+    let signData = Buffer.alloc(2048);
+    const length = signDataLayout.encode(transaction, signData);
+    signData = signData.slice(0, length);
+
+    return signData;
+  }
+
+  /**
+   * Sign the Transaction with the specified accounts.  Multiple signatures may
+   * be applied to a Transaction. The first signature is considered &quot;primary&quot;
+   * and is used when testing for Transaction confirmation.
+   *
+   * Transaction fields should not be modified after the first call to `sign`,
+   * as doing so may invalidate the signature and cause the Transaction to be
+   * rejected.
+   *
+   * The Transaction must be assigned a valid `lastId` before invoking this method
+   */
+  sign(...signers: Array&lt;Account&gt;) {
+    this.signPartial(...signers);
+  }
+
+  /**
+   * Partially sign a Transaction with the specified accounts.  The `Account`
+   * inputs will be used to sign the Transaction immediately, while any
+   * `PublicKey` inputs will be referenced in the signed Transaction but need to
+   * be filled in later by calling `addSigner()` with the matching `Account`.
+   *
+   * All the caveats from the `sign` method apply to `signPartial`
+   */
+  signPartial(...partialSigners: Array&lt;PublicKey | Account&gt;) {
+    if (partialSigners.length === 0) {
+      throw new Error(&apos;No signers&apos;);
+    }
+    const signatures: Array&lt;SignaturePubkeyPair&gt; = partialSigners.map(
+      accountOrPublicKey =&gt; {
+        const publicKey =
+          accountOrPublicKey instanceof Account
+            ? accountOrPublicKey.publicKey
+            : accountOrPublicKey;
+        return {
+          signature: null,
+          publicKey,
+        };
+      },
+    );
+    this.signatures = signatures;
+    const signData = this._getSignData();
+
+    partialSigners.forEach((accountOrPublicKey, index) =&gt; {
+      if (accountOrPublicKey instanceof PublicKey) {
+        return;
+      }
+      const signature = nacl.sign.detached(
+        signData,
+        accountOrPublicKey.secretKey,
+      );
+      invariant(signature.length === 64);
+      signatures[index].signature = signature;
+    });
+  }
+
+  /**
+   * Fill in a signature for a partially signed Transaction.  The `signer` must
+   * be the corresponding `Account` for a `PublicKey` that was previously provided to
+   * `signPartial`
+   */
+  addSigner(signer: Account) {
+    const index = this.signatures.findIndex(sigpair =&gt;
+      signer.publicKey.equals(sigpair.publicKey),
+    );
+    if (index &lt; 0) {
+      throw new Error(`Unknown signer: ${signer.publicKey.toString()}`);
+    }
+
+    const signData = this._getSignData();
+    const signature = nacl.sign.detached(signData, signer.secretKey);
+    invariant(signature.length === 64);
+    this.signatures[index].signature = signature;
+  }
+
+  /**
+   * Serialize the Transaction in the wire format.
+   *
+   * The Transaction must have a valid `signature` before invoking this method
+   */
+  serialize(): Buffer {
+    const {signatures} = this;
+    if (!signatures) {
+      throw new Error(&apos;Transaction has not been signed&apos;);
+    }
+
+    const signData = this._getSignData();
+    const wireTransaction = Buffer.alloc(
+      8 + signatures.length * 64 + signData.length,
+    );
+    invariant(signatures.length &lt; 256);
+    wireTransaction.writeUInt8(signatures.length, 0);
+    signatures.forEach(({signature}, index) =&gt; {
+      invariant(signature !== null, `null signature`);
+      invariant(signature.length === 64, `signature has invalid length`);
+      Buffer.from(signature).copy(wireTransaction, 8 + index * 64);
+    });
+    signData.copy(wireTransaction, 8 + signatures.length * 64);
+    invariant(
+      wireTransaction.length &lt;= PACKET_DATA_SIZE,
+      `Transaction too large: ${wireTransaction.length} &gt; ${PACKET_DATA_SIZE}`,
+    );
+    return wireTransaction;
+  }
+
+  /**
+   * Deprecated method
+   * @private
+   */
+  get keys(): Array&lt;PublicKey&gt; {
+    invariant(this.instructions.length === 1);
+    return this.instructions[0].keys;
+  }
+
+  /**
+   * Deprecated method
+   * @private
+   */
+  get programId(): PublicKey {
+    invariant(this.instructions.length === 1);
+    return this.instructions[0].programId;
+  }
+
+  /**
+   * Deprecated method
+   * @private
+   */
+  get userdata(): Buffer {
+    invariant(this.instructions.length === 1);
+    return this.instructions[0].userdata;
+  }
+}
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.1.0)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>
